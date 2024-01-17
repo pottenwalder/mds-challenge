@@ -1,27 +1,20 @@
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import axios from "axios";
+import StationPage from "@/pages/station/page";
+import StationDetails from "./pages/station/stationDetails";
 
 function App() {
-  const [stations, setStations] = useState([]);
-
-  useEffect(() => {
-    const getStations = async () => {
-      const response = await axios.get("http://localhost:5000/stations");
-      const stations = response.data;
-      console.log(stations);
-      setStations(stations);
-    };
-    getStations();
-  }, []);
-
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button>Click me</Button>
-      <pre>{stations && JSON.stringify(stations, null, 2)}</pre>
-    </>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<StationPage />} />
+        </Routes>
+        <Routes>
+          <Route path="/stationDetails" element={<StationDetails />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
