@@ -9,4 +9,4 @@ CORS(app, resources={r"/stations": {"origins": "http://localhost:5173"}})
 app.register_blueprint(views_bp)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
